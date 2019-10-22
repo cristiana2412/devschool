@@ -9,8 +9,13 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <modules>
         <module>course-1</module>
+        <module>course-2</module>
     </modules>
 
     <build>
