@@ -31,5 +31,15 @@ If the Account is not found, then the user is notified and asked to try again
  - The Keypad gives you the user input
  - The Screen can display a message, including formatted amounts
  
+
+####Extra:
+ 
+ - An ATM uses a Cash Dispenser to withdraw money
+ - The Cash Dispenser has a limited amount of 20$ bills, and can only dispense these kind of bills
+ - The number of bills in a Cash Dispenser is not increased when a Deposit Transaction is made 
+ - Withdrawal -> the user is asked to select an amount from a list, and if the Cash Dispenser has enough bills
+  and the balance supports it, the money is withdrawn
+ - Load the BankDatabase and also the CashDispenser values from an external file
+
  
  
