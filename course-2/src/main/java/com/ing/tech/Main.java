@@ -74,7 +74,7 @@ public class Main {
             return Integer.parseInt(keypad.nextLine());
         }
         void showBalance(){
-
+            System.out.println("Your" + currentUser.getAccount().getBalance());
         }
 
     }
