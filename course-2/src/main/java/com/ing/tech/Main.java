@@ -74,7 +74,10 @@ public class Main {
             return Integer.parseInt(keypad.nextLine());
         }
         void showBalance(){
-            System.out.println("Your" + currentUser.getAccount().getBalance());
+            System.out.println("Current balance\n" + currentUser.getAccount().getBalance());
+        }
+        void deposit(){
+            System.out.println("Choose the desire amount:\n");
         }
 
     }
