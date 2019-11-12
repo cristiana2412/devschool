@@ -1,23 +1,21 @@
 package com.ing.tech;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Map;
-
-@Data
+@AllArgsConstructor
 public class Account {
-    private static int accountNo = 0;
+    @Getter
+    private int id;
+    private int pin;
+
+    @Getter
+    @Setter
     private double balance;
 
-    public Account(double balance){
-        this.balance = balance;
-        this.accountNo++;
+    public boolean checkPin(int pin) {
+        return this.pin == pin;
     }
 
-    public void deposit(double amount){
-        this.balance += amount;
-    }
-    public void withdraw(double amount){
-        this.balance -= amount;
-    }
 }
