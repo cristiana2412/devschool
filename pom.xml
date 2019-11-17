@@ -18,6 +18,7 @@
         <module>course-2</module>
         <module>course-3</module>
         <module>course-4</module>
+        <module>course-5s</module>
     </modules>
 
     <build>
