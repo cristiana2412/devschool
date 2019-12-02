@@ -18,6 +18,9 @@
         <module>course-2</module>
         <module>course-3</module>
         <module>course-4</module>
+        <module>course-5s</module>
+        <module>course-6</module>
+        <module>atm-spring</module>
     </modules>
 
     <build>
