@@ -40,6 +40,4 @@ public class PersonController {
         return ResponseEntity.ok(personService.retrieveAll());
     }
 
-
-
 }

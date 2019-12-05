@@ -1,6 +1,5 @@
 package com.ing.tech.controller;
 
-import com.ing.tech.model.Person;
 import com.ing.tech.model.dto.PersonDTO;
 import com.ing.tech.model.dto.TeamDTO;
 import com.ing.tech.service.PersonService;
@@ -23,25 +22,23 @@ public class TeamController {
 
     @PostMapping
     public ResponseEntity createTeam(@RequestBody TeamDTO team) {
-        TeamDTO savedTeam = teamService.save(team);
+        TeamDTO savedTeam = teamService.createTeam(team);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTeam);
     }
 
-    @PutMapping
+    @PutMapping("/{teamId}/{personId}")
     public ResponseEntity addMember(@PathVariable Long teamId, @PathVariable Long personId) {
-        PersonDTO person = personService.retrievePerson(personId);
-        TeamDTO team = teamService.retrieveTeam(teamId);
-        TeamDTO updatedTeam = teamService.addMember(team, person);
+        TeamDTO updatedTeam = teamService.addMember(teamId, personId);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(updatedTeam);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedTeam);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteMember(@PathVariable Long id) {
-        teamService.delete(id);
+    @DeleteMapping("/{teamId}/{personId}")
+    public ResponseEntity removeMember(@PathVariable Long teamId, @PathVariable Long personId) {
+        TeamDTO updatedTeam = teamService.removeMember(teamId, personId);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.OK).body(updatedTeam);
     }
 
     @GetMapping("/{id}")

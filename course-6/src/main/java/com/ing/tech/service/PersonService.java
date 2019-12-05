@@ -3,29 +3,31 @@ package com.ing.tech.service;
 import com.ing.tech.model.Person;
 import com.ing.tech.model.dto.PersonDTO;
 import com.ing.tech.repository.PersonRepository;
+import com.ing.tech.repository.TeamRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service @Transactional @RequiredArgsConstructor
 public class PersonService {
 
-    private PersonRepository personRepository;
-
-    public PersonService(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
+    private final PersonRepository personRepository;
 
     public PersonDTO retrievePerson(Long id) {
-        Optional<Person> optionalPerson = personRepository.findById(id);
+        Person person = personRepository.findById(id).orElse(null);
+        String teamName;
+        if (person.getTeam() == null){
+            teamName = "";
+        } else {
+            teamName = person.getTeam().getName();
+        }
 
-        return optionalPerson
-                .map(person ->
-                        new PersonDTO(person.getFirstName(), person.getLastName()))
-                .orElse(null);
+        return new PersonDTO(person.getFirstName(), person.getLastName(), teamName);
     }
 
     public PersonDTO save(PersonDTO person) {
@@ -40,13 +42,19 @@ public class PersonService {
 
     public List<PersonDTO> retrieveAll() {
         Iterator<Person> personsIterator = personRepository.findAll().iterator();
-
+        String teamName;
         List<PersonDTO> persons = new ArrayList<>();
         while (personsIterator.hasNext()) {
             Person currentPerson = personsIterator.next();
+            if (currentPerson.getTeam() == null){
+                teamName = "";
+            } else {
+                teamName = currentPerson.getTeam().getName();
+            }
             persons.add(new PersonDTO(
                     currentPerson.getFirstName(),
-                    currentPerson.getLastName()));
+                    currentPerson.getLastName(),
+                    teamName));
         }
 
         return persons;

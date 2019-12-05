@@ -1,21 +1,27 @@
 package com.ing.tech.model.dto;
 
 import com.ing.tech.model.Person;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter @Setter
+@Transactional(propagation = Propagation.REQUIRED)
 public class TeamDTO {
-    String name;
-    private Set<Person> members = new HashSet<>();
+    private String name;
+    private List<Person> members;
 
-    public void addTeamMember(Person member){
-        members.add(member);
+    public TeamDTO(String name) {
+        this.name = name;
+        this.members = new ArrayList<>();
     }
 }

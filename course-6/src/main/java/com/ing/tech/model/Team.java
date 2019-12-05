@@ -1,30 +1,20 @@
 package com.ing.tech.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
-@Data
+@Getter @Setter
 @Entity
 public class Team {
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-    private Set<Person> members = new HashSet<>();
-
-    public Team (String name, Set<Person> members){
+    public Team(String name) {
         this.name = name;
-        this.members = members;
-    }
-
-    public void addTeamMember(Person member){
-        members.add(member);
     }
 }

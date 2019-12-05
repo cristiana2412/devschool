@@ -1,13 +1,11 @@
 package com.ing.tech.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @NoArgsConstructor
-@Data
+@Getter @Setter
 @Entity
 public class Person {
     @Id
@@ -16,7 +14,6 @@ public class Person {
     private String firstName;
     private String lastName;
 
-    @JoinColumn
     @ManyToOne
     private Team team;
 
@@ -24,4 +21,12 @@ public class Person {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    public Person (String firstName, String lastName, Team team){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.team = team;
+    }
+
+
 }

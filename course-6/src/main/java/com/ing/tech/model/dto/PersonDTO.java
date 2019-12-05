@@ -1,13 +1,23 @@
 package com.ing.tech.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.ing.tech.model.Team;
+import lombok.*;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter @Setter
 public class PersonDTO {
-     String firstName;
-     String lastName;
+     private String firstName;
+     private String lastName;
+     private String teamName;
+
+     public PersonDTO(String firstName, String lastName) {
+          this.firstName = firstName;
+          this.lastName = lastName;
+     }
 }
